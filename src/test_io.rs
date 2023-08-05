@@ -23,6 +23,7 @@ pub fn odd_even() {
     let mut num = String::new();
     io::stdin().read_line(&mut num).expect("Readline failed!");
     // Konversi ke unsigned int dan tampilkan error bila bukan angka
+    // https://doc.rust-lang.org/rust-by-example/primitives.html
     let num: u32 = num.trim_end().parse().expect("Not a number!");
 
     if num % 2 == 0 { println!("{num} merupakan bilangan genap") }
