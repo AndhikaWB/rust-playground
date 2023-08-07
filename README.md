@@ -1,4 +1,5 @@
 https://www.rust-lang.org/learn
+https://stevedonovan.github.io/rust-gentle-intro
 
 - Compiling and running simple Rust project: `rustc <file_name>.rs && <file_name>`
 - Creating project using Cargo (for bigger project): `cargo new <project_name>`

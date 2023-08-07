@@ -2,32 +2,35 @@ use std::io::{self, Write};
 use std::cmp::Ordering;
 use rand::Rng;
 
-pub fn ask_name() {
-    print!("Masukkan nama Anda: ");
+fn asker(question: &str) -> String {
+    print!("{question}");
     // Langsung tampilkan output print sebelum ke stdin (tanpa tunggu newline)
     // https://doc.rust-lang.org/std/macro.print.html
     io::stdout().flush().expect("Flush failed!");
 
-    let mut name = String::new();
-    io::stdin().read_line(&mut name).expect("Readline failed!");
+    let mut answer = String::new();
     // Hilangkan newline dari stdin
-    name = name.trim_end().to_string();
+    io::stdin().read_line(&mut answer).expect("Readline failed!");
 
+    // Return
+    answer.trim_end().to_string()
+}
+
+pub fn ask_name() {
+    let name = asker("Masukkan nama Anda: ");
     println!("Halo {name}!");
 }
 
 pub fn odd_even() {
-    print!("Masukkan angka: ");
-    io::stdout().flush().expect("Flush failed!");
-
-    let mut num = String::new();
-    io::stdin().read_line(&mut num).expect("Readline failed!");
     // Konversi ke unsigned int dan tampilkan error bila bukan angka
     // https://doc.rust-lang.org/rust-by-example/primitives.html
-    let num: u32 = num.trim_end().parse().expect("Not a number!");
+    let num: u32 = asker("Masukkan angka: ").parse().expect("Not a number!");
 
-    if num % 2 == 0 { println!("{num} merupakan bilangan genap") }
-    else { println!("{num} merupakan bilangan ganjil") }
+    if num % 2 == 0 {
+        println!("{num} merupakan bilangan genap");
+    } else {
+        println!("{num} merupakan bilangan ganjil");
+    }
 }
 
 pub fn guess_number() {
@@ -36,13 +39,8 @@ pub fn guess_number() {
     println!("Tebak nomor dari 1-20! (jawaban: {secret_num})");
 
     loop {
-        print!("Masukkan tebakan Anda: ");
-        io::stdout().flush().expect("Flush failed!");
-
-        let mut guess_num = String::new();
-        io::stdin().read_line(&mut guess_num).expect("Readline failed!");
-        // Konversi ke unsigned integer dan input ulang bila error
-        let guess_num: u32 = match guess_num.trim_end().parse() {
+        // Konversi ke unsigned int dan input ulang bila error
+        let guess_num: u32 = match asker("Masukkan tebakan Anda: ").parse() {
             Ok(num) => num,
             Err(_) => continue
         };
@@ -56,5 +54,19 @@ pub fn guess_number() {
                 break;
             }
         }
+    }
+}
+
+pub fn calculator() {
+    let num1: i32 = asker("Masukkan angka pertama: ").parse().expect("Not a number!");
+    let num2: i32 = asker("Masukkan angka kedua: ").parse().expect("Not a number!");
+
+    let oper = asker("Masukkan operator (+ - * /): ");
+    match oper.trim_end() {
+        "+" => println!("{num1} ditambah {num2} adalah {}", num1 + num2),
+        "-" => println!("{num1} dikurang {num2} adalah {}", num1 - num2),
+        "*" => println!("{num1} dikali {num2} adalah {}", num1 * num2),
+        "/" => println!("{num1} dibagi {num2} adalah {}", num1 as f32 / num2 as f32),
+        _ => println!("Operator tidak dikenali!")
     }
 }
