@@ -46,6 +46,7 @@ fn main() {
     car_dealer.list_cars();
 
     // Akan gagal dieksekusi karena "ref_car" akan menjadi null setelah dihapus
+    // Rust bersifat type safe sehingga tidak boleh ada null exception
     // https://stackoverflow.com/q/47618823/cannot-borrow-as-mutable-because-it-is-also-borrowed-as-immutable
     // let ref_car = car_dealer.find_car_by_model(
     //     String::from("Bus AC-112")).expect("Car not found!");
