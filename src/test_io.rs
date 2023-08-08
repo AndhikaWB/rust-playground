@@ -2,6 +2,7 @@ use std::io::{self, Write};
 use std::cmp::Ordering;
 use rand::Rng;
 
+// Non-public, hanya bisa dipakai di file yang sama
 fn asker(question: &str) -> String {
     print!("{question}");
     // Langsung tampilkan output print sebelum ke stdin (tanpa tunggu newline)
