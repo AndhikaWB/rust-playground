@@ -4,7 +4,8 @@ The code I made while learning basic Rust concepts.
 ## Main References
 1. https://www.rust-lang.org/learn (choose what you need)
 2. https://stevedonovan.github.io/rust-gentle-intro (enough detail but maybe not as a primary reference)
-3. https://tourofrust.com (simple but some important concepts are skipped)
+3. https://dhghomon.github.io/easy_rust (another good reference)
+4. https://tourofrust.com (simple but some important concepts are skipped)
 
 ## Compiling and Running Rust
 - Compile and run simple Rust project: `rustc <file_name>.rs && <file_name>`
@@ -17,4 +18,5 @@ The code I made while learning basic Rust concepts.
 - [x] Test flow control (if else, match, etc)
 - [x] Test loop and break (for, while)
 - [x] Implement simple OOP case
+- [ ] Make use of [enum](https://doc.rust-lang.org/rust-by-example/custom_types/enum.html)
 - [ ] Make exercise template like rustlings?

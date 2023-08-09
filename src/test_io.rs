@@ -2,7 +2,7 @@ use std::io::{self, Write};
 use std::cmp::Ordering;
 use rand::Rng;
 
-// Non-public, hanya bisa dipakai di file yang sama
+// Fungsi non-public, hanya bisa dipakai di file yang sama
 fn asker(question: &str) -> String {
     print!("{question}");
     // Langsung tampilkan output print sebelum ke stdin (tanpa tunggu newline)
@@ -13,7 +13,7 @@ fn asker(question: &str) -> String {
     // Hilangkan newline dari stdin
     io::stdin().read_line(&mut answer).expect("Readline failed!");
 
-    // Return
+    // Return string (bisa juga menggunakan String::from)
     answer.trim_end().to_string()
 }
 
@@ -39,6 +39,7 @@ pub fn guess_number() {
     let secret_num = rand::thread_rng().gen_range(1..=20);
     println!("Tebak nomor dari 1-20! (jawaban: {secret_num})");
 
+    // Loop tak terbatas
     loop {
         // Konversi ke unsigned int dan input ulang bila error
         let guess_num: u32 = match asker("Masukkan tebakan Anda: ").parse() {

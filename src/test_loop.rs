@@ -1,17 +1,31 @@
 use std::cmp;
 
-pub fn square_root(num: i32) -> i32 {
+// pub fn square_root(num: i32) -> i32 {
+//     // Dari 0 sampai tak terhingga
+//     for i in 0.. {
+//         // Return di awal (pakai keyword)
+//         if i * i == num { return i; }
+//         else if i * i > num { break; }
+//     }
+//     // Return di akhir (tanpa keyword)
+//     -1
+// }
+
+// Karena di Rust bersifat type safe usahakan tidak memakai -1, null, "", dsb
+// Pakai Option atau Result sebagai alternatifnya
+// https://dhghomon.github.io/easy_rust/Chapter_31.html
+pub fn square_root(num: i32) -> Option<i32> {
     // Dari 0 sampai tak terhingga
     for i in 0.. {
         // Return di awal (pakai keyword)
-        if i * i == num { return i; }
+        if i * i == num { return Some(i); }
         else if i * i > num { break; }
     }
     // Return di akhir (tanpa keyword)
-    -1
+    None
 }
 
-pub fn prime_numbers(max_num: i32) {
+pub fn prime_numbers(max_num: u32) {
     // Dari 2 sampai max_num (max_num termasuk)
     for i in 2..=max_num {
         let mut prime = true;

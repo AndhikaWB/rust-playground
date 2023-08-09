@@ -1,22 +1,50 @@
 // Hilangkan warning bagian kode tidak terpakai
 #![allow(dead_code,unused_imports)]
 
+use std::result;
+
 mod test_io;
 mod test_loop;
 mod test_oop;
 
 fn main() {
+    // ========== Input output
+
     // test_io::ask_name();
     // test_io::odd_even();
     // test_io::guess_number();
     // test_io::calculator();
 
+    // ========== For/while loop
+
     test_loop::prime_numbers(100);
-    println!("{}", test_loop::square_root(64));
     println!("{}", test_loop::decimal_to_binary(138));
     println!("{}", test_loop::reverse_word("saya makan ikan"));
 
-    // Tes pass by reference (bukan by value)
+    // Bila hasil return bisa tidak ada hasil (None)
+    match test_loop::square_root(64) {
+        Some(result) => println!("{result}"),
+        None => println!("Akar tidak ditemukan"),
+    };
+
+    // ========== Ownership
+
+    // Di Rust tiap variabel akan ada owner-nya (sesuai scope)
+    // Bila digunakan berkali-kali (tanpa borrowing) maka owner bisa berganti
+    // Solusi: clone/borrowing/pass by reference
+    // https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html
+    // https://www.youtube.com/watch?v=lzKeecy4OmQ&t=10936s
+
+    let s1 = String::from("hello");
+    // Akan error saat print s1 karena s1 sudah berganti/dimiliki s2
+    // let s2 = s1;
+    // Akan berhasil karena s1 di clone sebelum dipindah ke s2
+    let s2 = s1.clone();
+
+    println!("{}, world!", s1);
+    println!("{}, world!", s2);
+
+    // Tes borrowing/pass by reference (bukan by value)
     let mut num_arr = [3,1,7,5,2,8,10,11,6];
     test_loop::bubble_sort(&mut num_arr);
     // https://doc.rust-lang.org/std/fmt/#formatting-traits
